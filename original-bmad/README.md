@@ -1,3 +1,7 @@
+This is a reduced, portable directory you can paste into any project and start directing your LLM to use by adhering to the workflows/complete-bmad-process-flow.md.  Customize as you see fit. 
+
+Below is the original readme from which this was distilled from: https://github.com/bmad-code-org/BMAD-METHOD/blob/main/docs/user-guide.md
+
 # BMAD Universal Base Framework
 
 A **project-agnostic foundation** for creating specialized BMAD Method implementations. This base framework provides the core BMAD methodology with story-driven development for any technology stack or domain.
