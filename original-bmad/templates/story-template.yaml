@@ -1,0 +1,273 @@
+template:
+  id: story-template
+  name: BMAD Development Story Template
+  version: 1.0.0
+  description: Complete development story with full context for autonomous implementation
+  output_format: markdown
+  file_extension: .md
+
+workflow:
+  interaction_mode: guided
+  requires_user_input: true
+  auto_save: true
+  validation_rules:
+    - acceptance_criteria_required
+    - technical_context_required
+    - implementation_tasks_required
+
+variables:
+  epic_name: "Feature Epic Name"
+  story_number: "001"
+  story_title: "Brief Story Title"
+  priority: "Medium"
+  estimated_effort: "Medium"
+  assigned_agent: "dev-agent"
+
+sections:
+  - id: header
+    title: Story Header
+    instruction: |
+      Create story header with metadata. Include story ID, title, priority, and status.
+      Format: story-{epic_name}-{story_number}-{story_slug}.md
+    template: |
+      # Story: {{story_title}}
+      
+      **Story ID**: {{epic_name}}-{{story_number}}
+      **Epic**: {{epic_name}}
+      **Priority**: {{priority}}
+      **Estimated Effort**: {{estimated_effort}}
+      **Status**: Draft
+      **Assigned to**: {{assigned_agent}}
+      **Created**: {{current_date}}
+
+  - id: user_story
+    title: User Story
+    instruction: |
+      Write user story in standard format: "As a [user type], I want [goal] so that [benefit]"
+      Make it specific and focused on user value.
+    template: |
+      ## User Story
+      
+      **As a** [user type]
+      **I want** [specific goal/capability]  
+      **So that** [business value/benefit]
+
+  - id: business_context
+    title: Business Context
+    instruction: |
+      Provide business context and rationale. Why is this story important?
+      What business problem does it solve? How does it align with objectives?
+    template: |
+      ## Business Context
+      
+      ### Problem Statement
+      [What problem are we solving?]
+      
+      ### Business Value
+      [What value does this provide to users/business?]
+      
+      ### Success Metrics
+      [How will we measure success?]
+
+  - id: acceptance_criteria
+    title: Acceptance Criteria
+    instruction: |
+      Define specific, testable acceptance criteria using Given-When-Then format.
+      Include both functional and non-functional criteria. Be precise and measurable.
+    template: |
+      ## Acceptance Criteria
+      
+      ### Functional Criteria
+      
+      **AC1:** [Primary happy path]
+      - **Given** [initial condition]
+      - **When** [user action]  
+      - **Then** [expected result]
+      
+      **AC2:** [Error handling/edge cases]
+      - **Given** [error condition]
+      - **When** [user action]
+      - **Then** [expected error handling]
+      
+      **AC3:** [Additional scenarios]
+      - **Given** [condition]
+      - **When** [action]
+      - **Then** [result]
+      
+      ### Non-Functional Criteria
+      - Performance: [response time requirements]
+      - Security: [security considerations]  
+      - Usability: [user experience requirements]
+      - Accessibility: [accessibility standards]
+
+  - id: technical_context
+    title: Technical Context
+    instruction: |
+      Provide complete technical context from PRD and Architecture documents.
+      Include architecture patterns, technology stack, existing code patterns to follow.
+    template: |
+      ## Technical Context
+      
+      ### Architecture Overview
+      [Relevant architecture patterns and decisions from Architecture document]
+      
+      ### Technology Stack
+      - **Language**: [programming language]
+      - **Framework**: [web framework]
+      - **Database**: [database technology]
+      - **Testing**: [testing frameworks]
+      
+      ### Existing Patterns
+      [Code patterns, conventions, and styles to follow]
+      
+      ### Integration Points
+      [APIs, services, or components this story interacts with]
+      
+      ### Dependencies  
+      [Other stories, libraries, or systems this depends on]
+
+  - id: implementation_guidance
+    title: Implementation Guidance
+    instruction: |
+      Provide specific implementation guidance for dev agent. Include file locations,
+      function signatures, database changes, and any architectural decisions.
+    template: |
+      ## Implementation Guidance
+      
+      ### Files to Modify/Create
+      - `[file_path]` - [description of changes needed]
+      - `[file_path]` - [description of new file purpose]
+      
+      ### Key Functions/Components
+      ```[language]
+      // Example function signature or component structure
+      function exampleFunction(params) {
+          // Implementation guidance
+      }
+      ```
+      
+      ### Database Changes
+      [Any database schema changes, migrations, or queries needed]
+      
+      ### API Changes  
+      [New endpoints, modifications to existing APIs]
+      
+      ### Configuration
+      [Environment variables, settings, or configuration changes]
+
+  - id: testing_requirements
+    title: Testing Requirements
+    instruction: |
+      Define comprehensive testing requirements. Include unit tests, integration tests,
+      and end-to-end test scenarios. Specify test data and edge cases.
+    template: |
+      ## Testing Requirements
+      
+      ### Unit Tests
+      - Test [specific functionality]
+      - Test error handling for [error cases]
+      - Test edge cases: [specific edge cases]
+      
+      ### Integration Tests
+      - Test integration with [external service/API]
+      - Test database interactions
+      - Test [integration scenario]
+      
+      ### End-to-End Tests
+      - Happy path: [complete user workflow]
+      - Error scenarios: [error handling workflows]
+      
+      ### Test Data Requirements
+      [Specific test data, mock responses, or fixtures needed]
+      
+      ### Performance Tests
+      [Load testing, response time requirements]
+
+  - id: definition_of_done
+    title: Definition of Done
+    instruction: |
+      Specify what constitutes completion for this story. Include code quality,
+      testing, documentation, and any other completion criteria.
+    template: |
+      ## Definition of Done
+      
+      ### Code Quality
+      - [ ] Code follows project conventions and patterns
+      - [ ] No linting or formatting violations
+      - [ ] Code review completed
+      - [ ] Performance is acceptable
+      
+      ### Testing
+      - [ ] Unit test coverage ≥ 80%
+      - [ ] All integration tests pass
+      - [ ] End-to-end tests pass
+      - [ ] Manual testing completed
+      
+      ### Documentation
+      - [ ] Code is self-documenting with clear function/variable names
+      - [ ] Complex logic has explanatory comments
+      - [ ] API documentation updated (if applicable)
+      - [ ] README updated (if applicable)
+      
+      ### Deployment
+      - [ ] Feature works in development environment
+      - [ ] No breaking changes to existing functionality
+      - [ ] Database migrations run successfully (if applicable)
+      - [ ] Environment variables configured (if applicable)
+
+  - id: notes_section
+    title: Development Notes
+    instruction: |
+      Create sections for dev and QA agents to add their notes during implementation.
+      This enables continuous communication and tracking.
+    template: |
+      ## Development Notes
+      
+      ### Dev Agent Notes
+      [Dev agent adds implementation notes, decisions, and progress here]
+      
+      ### QA Agent Notes  
+      [QA agent adds testing notes, issues found, and validation results here]
+      
+      ### Review Notes
+      [Code review feedback and resolution notes]
+
+  - id: story_links
+    title: Story Links & References
+    instruction: |
+      Include links to related stories, PRD sections, architecture documents,
+      and any external resources needed for context.
+    template: |
+      ## References & Links
+      
+      ### Related Stories
+      - [Story ID]: [Brief description]
+      - [Story ID]: [Brief description]
+      
+      ### Documentation References
+      - PRD Section: [Link to relevant PRD section]
+      - Architecture: [Link to architecture document]  
+      - API Docs: [Link to API documentation]
+      
+      ### External Resources
+      - [Resource name]: [URL and description]
+      
+      ### Design Assets
+      - Mockups: [Link to design files]
+      - User flows: [Link to user flow diagrams]
+
+examples:
+  - title: "User Authentication Story"
+    description: "Example story for implementing user authentication"
+  - title: "API Endpoint Story"  
+    description: "Example story for creating new API endpoint"
+  - title: "UI Component Story"
+    description: "Example story for building reusable UI component"
+
+validation_checklist:
+  - "Story has clear user value proposition"
+  - "Acceptance criteria are specific and testable"
+  - "Technical context is complete and actionable"
+  - "Implementation guidance provides clear direction"
+  - "Testing requirements cover all scenarios"
+  - "Definition of done is comprehensive"
