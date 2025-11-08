@@ -1,0 +1,67 @@
+# BMAD Method Core Configuration
+# Universal base framework for LLM-native agent orchestration
+
+framework:
+  name: "BMAD Universal Base"
+  version: "1.0.0"
+  description: "Project-agnostic base framework for specialized BMAD implementations"
+  type: "universal-base"
+
+agent_types:
+  planning_agents:
+    description: "Rich context agents for web UI - planning, analysis, architecture"
+    context: "extensive"
+    environment: "web_ui"
+    capabilities:
+      - "PRD creation"
+      - "architecture planning" 
+      - "requirement analysis"
+      - "story creation"
+    
+  dev_agents:
+    description: "Lean agents for IDE - focused coding with minimal context"
+    context: "minimal"
+    environment: "ide"
+    capabilities:
+      - "code implementation"
+      - "testing"
+      - "debugging"
+      - "documentation updates"
+
+workflows:
+  primary: "planning_to_story_to_implementation"
+  phases:
+    - name: "planning_phase"
+      agents: ["analyst", "architect", "prd_agent"]
+      environment: "web_ui"
+      outputs: ["prd.md", "architecture.md", "technical_brief.md"]
+      
+    - name: "story_creation"
+      agents: ["scrum_master"]
+      environment: "web_ui" 
+      inputs: ["prd.md", "architecture.md"]
+      outputs: ["stories/*.md"]
+      
+    - name: "implementation"
+      agents: ["dev_agent", "qa_agent"]
+      environment: "ide"
+      inputs: ["stories/*.md"]
+      outputs: ["code", "tests", "documentation"]
+
+story_workflow:
+  enabled: true
+  directory: "stories"
+  naming_convention: "story-{epic}-{number}-{slug}.md"
+  status_tracking: true
+  dev_qa_cycle: true
+
+quality_gates:
+  - "story_validation"
+  - "implementation_review"
+  - "testing_complete"
+  - "documentation_updated"
+
+project_integration:
+  auto_detect_stack: true
+  preserve_patterns: true
+  respect_constraints: true

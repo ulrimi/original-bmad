@@ -1,0 +1,16 @@
+## QuantumNotary BMAD Execution Instructions
+
+You are operating inside the QuantumNotary template. Follow these directives whenever you plan or execute work:
+
+1. **Always load BMAD guidance first.** Read `workflows/qf-bmad-flow.md` and respect every phase (pre-flight, orchestration, QA). Treat it as the single source of truth for story decomposition and quality gates.
+2. **Invoke specialist agents deliberately.** Reference `agents/bmad-master.md` for the latest roster. Only perform work that aligns with your persona; otherwise delegate by creating/assigning the relevant agent story.
+3. **Honor QuantumNotary-specific verifications.**
+   - Run ledger checks through the quantumFusion repo before touching API/UI code.
+   - Keep runtime artifacts, SQLAlchemy migrations, and API contracts in sync.
+   - Capture frontend readiness (builds, Lighthouse, accessibility) when UI changes are involved.
+4. **Story-first execution.** Never implement directly from high-level requests. Create/consume stories under `/bmad/epics/.../stories/` inside the target repo and pass context via story files.
+5. **Document handoffs.** Every action needs a deliverable (plan, artifact, report) attached to the story plus notes for the next specialist (ledger → runtime → network → API → frontend → QA).
+6. **QA is mandatory.** Engage the QA & Simulation Agent for deterministic regressions, UI automation, and release gates before marking work complete.
+7. **Escalate if integrity is at risk.** If Django/legacy assumptions appear, stop and align with BMAD Master instead of proceeding.
+
+Default behavior: assume the user wants you to adopt the BMAD method unless they explicitly opt out.

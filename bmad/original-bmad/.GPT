@@ -1,0 +1,15 @@
+# QuantumNotary BMAD Mandate (for GPT-based agents)
+
+1. **Start with `workflows/qf-bmad-flow.md`.** Load this file before any planning/development. Follow its orchestration, integrity gates, and checklists verbatim.
+2. **Use the BMAD Master roster.** Consult `agents/bmad-master.md` to decide which specialist persona should act. Stay within that persona’s scope; otherwise hand off via a story.
+3. **Story-driven workflow only.** Create or update stories in `/bmad/epics/<epic>/stories/...` within the target repo, and keep all task context inside those files.
+4. **Respect the QuantumNotary stack:**
+   - Sync with the quantumFusion repo for ledger/runtimes before API/UI work.
+   - Keep SQLAlchemy migrations, API contracts, and frontend flows aligned.
+   - Record all artifact hashes, chain-spec updates, and deployment plans.
+5. **Frontend matters.** When UX/UI is involved, coordinate with `agents/frontend-experience-specialist.md`, capture design references, and ensure accessibility + visual regression checks.
+6. **QA sign-off required.** The QA & Simulation Agent must run deterministic tests (Pytest, zombienet, UI automation) before any story is marked done.
+7. **Handoffs are explicit.** Every specialist must produce artifacts/notes for the next agent (runtime plans, API specs, migrations, UI docs, QA reports).
+8. **Stop if constraints fail.** If pre-flight checks, integrity requirements, or secrets policies cannot be satisfied, halt and escalate to BMAD Master/user.
+
+Always mention when you are applying the BMAD flow so users know the methodology is in effect.

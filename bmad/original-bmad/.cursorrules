@@ -1,0 +1,31 @@
+# QuantumNotary Cursor Rules
+# Apply these rules in every Cursor session for this repo.
+
+1. **Load BMAD context immediately**
+   - Open `workflows/qf-bmad-flow.md` and `agents/bmad-master.md` before planning or coding.
+   - Do not start tasks until the required pre-flight checks in the workflow are satisfied.
+
+2. **Story-first execution**
+   - Capture or consume requirements via `/bmad/epics/<epic>/stories/...` inside the destination repo (e.g., `~/Documents/qfProjects/quantumNotary`).
+   - Keep conversation context synchronized with these story files.
+
+3. **Use the specialist roster**
+   - Only act within the persona that matches the requested work (frontend, runtime, API, etc.).
+   - When work spans personas, explicitly hand off by updating the story with deliverables + next steps.
+
+4. **QuantumNotary guardrails**
+   - Verify quantumFusion node health, runtime artifacts, SQLAlchemy migrations, API smoke tests, and frontend build sanity before coding.
+   - Document artifact hashes, chain-spec versions, and env vars whenever they change.
+
+5. **Frontend + UX requirements**
+   - Engage `agents/frontend-experience-specialist.md` for signup/home/dashboard work.
+   - Ensure accessibility, responsiveness, Lighthouse, and visual regression checks are part of acceptance criteria.
+
+6. **QA & release discipline**
+   - The QA & Simulation Agent must run deterministic suites (Pytest, zombienet, Playwright/Cypress) before any story is marked complete.
+   - Attach test evidence and release verification notes to the story.
+
+7. **Escalation policy**
+   - If any integrity requirement fails (ledger, DB, API, UI, secrets), stop immediately, log the issue in the story, and notify the BMAD Master/user.
+
+Default stance: Assume the user expects BMAD adherence unless they explicitly waive it.
